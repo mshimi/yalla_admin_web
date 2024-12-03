@@ -1,0 +1,16 @@
+.pulse-animation {
+    animation: pulse 2s infinite ease-in-out;
+  }
+  
+  /* Keyframes for pulsing */
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.8);
+    }
+  }

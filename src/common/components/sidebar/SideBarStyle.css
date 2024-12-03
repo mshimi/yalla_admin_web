@@ -1,0 +1,28 @@
+/* Sidebar styles */
+.expanded-sidebar {
+    width: auto; /* Allow dynamic width based on content */
+    min-width: 150px; /* Minimum width when expanded */
+    max-width: 300px; /* Optional: Maximum width for expanded */
+  }
+  
+  .collapsed-sidebar {
+    width: auto; /* Dynamic width */
+    min-width: 50px; /* Minimum width for icons */
+    max-width: 60px; /* Optional: Maximum width for collapsed */
+  }
+  
+  /* Transition for smooth resizing */
+  .expanded-sidebar,
+  .collapsed-sidebar {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Nav link alignment */
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-end {
+    text-align: right;
+  }
+
