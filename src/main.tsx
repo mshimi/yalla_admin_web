@@ -6,6 +6,10 @@ import { store } from "./app/store"
 import "./index.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AxiosError } from "axios"
+import ErrorNotifier from "./common/error_handlers/Notifier"
+import "react-toastify/dist/ReactToastify.css";
+import Notifier from "./common/error_handlers/Notifier"
+
 
 
 
@@ -14,21 +18,9 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries:  {
       retry: 3,
-      refetchOnWindowFocus: false,
-      staleTime: 1000 * 60 * 5,
-      throwOnError(error, query) {
-        if(error instanceof AxiosError ) {
-          if(error.response?.status === 401) {
-            localStorage.removeItem("token");
-            localStorage.removeItem("refreshToken");
-            window.location.href = "/login";
-            return true;
-          }
-        } 
-
-        return true;
-      },
-       
+      refetchOnWindowFocus: true,
+      
+     
     },
     mutations: {
       onError: (error, variables, context) => {
@@ -36,6 +28,7 @@ export const queryClient = new QueryClient({
       },
     },
   },
+  
 });
 
 
@@ -50,6 +43,7 @@ if (container) {
       <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <App />
+        <Notifier />
         </QueryClientProvider>
       </Provider>
     </React.StrictMode>,

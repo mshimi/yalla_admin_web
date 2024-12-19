@@ -8,27 +8,27 @@ import { Items } from '../../router/SidebarItems';
 
 
 const Sidebar: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setCollapsed(true); // Always collapse on small screens
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window.innerWidth <= 768) {
+  //       setCollapsed(true); // Always collapse on small screens
+  //     }
+  //   };
 
-    handleResize(); // Run on initial render
-    window.addEventListener('resize', handleResize);
+  //   handleResize(); // Run on initial render
+  //   window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
  
 
   return (
     <div
       className={`d-flex flex-column bg-light border-end ${
-        collapsed ? 'collapsed-sidebar' : 'expanded-sidebar'
+         'expanded-sidebar'
       }`}
       style={{
         height: 'calc(100vh - 56px)',
@@ -36,8 +36,8 @@ const Sidebar: React.FC = () => {
         transition: 'all 0.3s ease',
       }}
     >
-      <Nav className={`flex-column ${collapsed ? 'text-center py-3 ' : 'pt-3 px-2'}`}>
-        {!collapsed && (
+      <Nav className={`flex-column ${false ? 'text-center py-3 ' : 'pt-3 px-2'}`}>
+        {!false && (
           <Nav.Item className="mb-3">
             <h5>Pages</h5>
           </Nav.Item>
@@ -48,7 +48,7 @@ const Sidebar: React.FC = () => {
           Items.map((item) => (
             
 
-           <SidebarGroup key={item.label} item={item} collapsed={collapsed} /> 
+           <SidebarGroup key={item.label} item={item} collapsed={false} /> 
           
             
           ))
@@ -57,13 +57,13 @@ const Sidebar: React.FC = () => {
       </Nav>
 
       {/* Collapsible Button */}
-      <div
-        className={` d-none d-md-block border-top mt-auto ${collapsed ? 'text-center px-1 py-1' : 'text-end px-3 py-1'}`}
+      {/* <div
+        className={` d-none d-md-block border-top mt-auto ${false ? 'text-center px-1 py-1' : 'text-end px-3 py-1'}`}
         style={{ cursor: 'pointer' }}
-        onClick={() => setCollapsed(!collapsed)}
+        // onClick={() => setCollapsed(!false)}
       >
-        {collapsed ? <BsArrowRight size={20} /> : <BsArrowLeft size={24} />}
-      </div>
+        {false ? <BsArrowRight size={20} /> : <BsArrowLeft size={24} />}
+      </div> */}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { BaseService } from "../../../../common/service/BaseService";
+import { BaseServiceWithImage } from "../../../../common/service/BaseServiceWithImage";
 import type City from "../types/City";
 
-export default class CityService extends BaseService<City, number> {
+export default class CityService extends BaseServiceWithImage<City, number> {
     constructor() {
-        super("/cities");
+        super("/core/city");
     }
 
 

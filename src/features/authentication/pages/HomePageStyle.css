@@ -1,0 +1,5 @@
+.scrollable-container {
+    height: calc(100vh - /* height of Navbar */ 60px); /* Adjust for your Navbar height */
+    min-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }

@@ -7,6 +7,11 @@ import CountryPage from "../../features/core/country/pages/CountryPage";
 import CityPage from "../../features/core/city/pages/CityPage";
 import AreaPage from "../../features/core/area/pages/AreaPage";
 import HotelPage from "../../features/core/hotel/pages/HotelPage";
+import AirportPage from "../../features/core/airport/pages/AirportPage";
+import VehiclePage from "../../features/transfer/vehicle/pages/VehiclePage";
+import TransferReleasePage from "../../features/transfer/transfer_realease/pages/TransferReleasePage";
+import TransferRatePage from "../../features/transfer/transfer_rate/pages/TransferRatePage";
+import ExcurstionRatePage from "../../features/excursion/rates/pages/ExcursionRatePage";
 
 const router = createBrowserRouter(
  
@@ -38,7 +43,26 @@ const router = createBrowserRouter(
             { path: "cities", element: <CityPage/> },
             { path: "areas", element: <AreaPage/> },
             { path: "hotels", element: <HotelPage/> },
+            { path: "airports", element: <AirportPage/> },
           ],
+        },
+        {
+          path: "transfer",
+          element: <Outlet/>,
+          children: [
+            {  index:true, element: <Navigate to="vehicles" replace /> },
+            {  path: "vehicles", element: <VehiclePage/>  },
+            {  path: "release", element: <TransferReleasePage/>  },
+            {  path: "rates", element: <TransferRatePage/>  },
+          ]
+        },
+        {path: "excursion", element: <Outlet/>,
+
+          children: [
+            {  index:true, element: <Navigate to="excursion" replace /> },
+            {  path: "excursion", element: <ExcurstionRatePage/>  },
+          ]
+
         },
       ],
     },

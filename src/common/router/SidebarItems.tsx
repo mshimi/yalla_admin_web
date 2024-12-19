@@ -1,4 +1,5 @@
-import {  BsBuildings, BsGeoAlt, BsGlobe, BsHouse, BsHouseDoor } from "react-icons/bs";
+import { BiSolidTimer } from "react-icons/bi";
+import {  BsAirplane, BsBuildings, BsBusFront, BsCurrencyDollar, BsGeoAlt, BsGlobe, BsHouse, BsHouseDoor } from "react-icons/bs";
 
 const SidebarItems:SidebarItem[] = [
     {
@@ -21,6 +22,13 @@ export const Items : SidebarHeaderInterface[] = [
             },
         ]
     },
+    {
+        label:"Configuration",
+        children:[
+            
+],
+},
+    
     {
         children: [
             {
@@ -47,9 +55,34 @@ export const Items : SidebarHeaderInterface[] = [
                 path: "core/hotels",
                 
             },
+            {
+                icon: <BsAirplane />,
+                label: "Airports",
+                path: "core/airports",
+                
+            },
            ],
         label: "Core",
     },
+    {
+        label:"Transfer",
+        children:[
+            {
+                icon: <BsBusFront />,
+                label: "Vehicles",
+                path:"transfer/vehicles",
+    },
+    {
+        icon: <BiSolidTimer />,
+        label: "Release",
+        path:"transfer/release",
+},
+{
+    icon: <BsCurrencyDollar />,
+    label: "Rates",
+    path:"transfer/rates",
+},
+],},
 ];
 
 

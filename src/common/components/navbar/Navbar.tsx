@@ -1,17 +1,27 @@
 import type React from 'react';
-import { Navbar, Container, Form, FormControl, Button, Nav, Dropdown } from 'react-bootstrap';
+import { Navbar, Container, Form, FormControl, Button, Nav, Dropdown, Offcanvas } from 'react-bootstrap';
 import { BsSun } from 'react-icons/bs';
 import logo2 from "../../../assets/logo2.png";
 import { useState } from 'react';
 import UserControllsDropDown from './UserControllsDropDown';
+import Sidebar from '../sidebar/Sidebar';
+import SideBarElements from '../sidebar/SideBarElements';
 
 const AppNavbar: React.FC = () => {
 
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
 
+  const handleCloseOffcanvas = () => setShowOffcanvas(false);
+  const handleShowOffcanvas = () => setShowOffcanvas(true);
 
   return (
     <Navbar bg="light" variant="light" fixed="top" className="border-bottom shadow-sm">
       <Container fluid>
+
+      <Button className="d-sm-none" variant="outline-primary" onClick={handleShowOffcanvas}>
+          Menu
+        </Button>
+
         {/* Brand */}
         <Navbar.Brand href="/">
           <div className="d-flex align-items-center">
@@ -32,6 +42,8 @@ const AppNavbar: React.FC = () => {
        <UserControllsDropDown />
         </Nav>
       </Container>
+      
+      
     </Navbar>
   );
 };

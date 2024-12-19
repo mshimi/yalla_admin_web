@@ -1,8 +1,12 @@
 import axios from "axios";
-import type { AxiosInstance } from "axios";
-import { useAppSelector } from "../../app/hooks";
+import type { AxiosError, AxiosInstance } from "axios";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectToken } from "../../features/authentication/states/AuthSlice";
 import { useLocation } from "react-router-dom";
+import { store } from "../../app/store";
+import { addNotification } from "../error_handlers/notificationSlice";
+
+// const dispatch = useAppDispatch();
 
 const apiClient:AxiosInstance = axios.create({
   baseURL: '/api',
@@ -35,63 +39,21 @@ apiClient.interceptors.request.use(
 );
 
 
-// apiClient.interceptors.response.use(
-//   (response) => response,
-//   async (error: AxiosError) => {
+apiClient.interceptors.response.use(
+  (response) => response,
+  async (error: AxiosError) => {
+    if (error.response) {
+      // Extract the error message from the API response
+      const errorMessage = (error.response.data as { message?: string })?.message || "An unknown error occurred.";
 
-//       const originalRequest = error.config as AxiosRequestConfigWithRetry;
+      // Use the store's dispatch method to dispatch the error
+      store.dispatch(addNotification({ message: errorMessage, type: "error" }));
+    }
 
-//       if (!originalRequest) {
-//           return Promise.reject(error);
-//       }
-
-//       // Check if the error status is 401 or 403
-//       if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-//           const refreshToken = localStorage.getItem('refreshToken');
-
-//           if (!refreshToken) {
-//               // No refreshToken, logout
-//               authService.logout();
-//               return Promise.reject(error);
-//           }
-
-//           // Avoid infinite loops
-//           if (!originalRequest._retry) {
-//               originalRequest._retry = true;
-
-//               try {
-//                   // Attempt to refresh the token
-//                   const authResponse = await authService.refreshToken();
-
-//                   // Update token in localStorage
-//                   localStorage.setItem('token', authResponse.token);
-
-//                   // Update Axios default headers
-//                   api.defaults.headers.common['Authorization'] = `Bearer ${authResponse.token}`;
-
-//                   // Update the original request's headers
-//                   if (originalRequest.headers) {
-//                       originalRequest.headers['Authorization'] = `Bearer ${authResponse.token}`;
-//                   }
-
-//                   // Retry the original request
-//                   return api(originalRequest);
-//               } catch (refreshError) {
-//                   // Refresh token failed, logout
-//                   authService.logout();
-//                   return Promise.reject(refreshError);
-//               }
-//           } else {
-//               // Already retried, but still getting 401 or 403, logout
-//               authService.logout();
-//               return Promise.reject(error);
-//           }
-//       }
-
-//       // For other errors, reject the error
-//       return Promise.reject(error);
-//   }
-// );
+    // Reject the error so it can be handled further downstream if needed
+    return Promise.reject(error);
+  }
+);
 
 
 

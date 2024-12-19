@@ -1,0 +1,9 @@
+.dropdown-menu-custom {
+    min-width: 200px; /* Set a consistent width for the menu */
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .navbar .dropdown {
+    white-space: nowrap; /* Prevent text from wrapping */
+  }

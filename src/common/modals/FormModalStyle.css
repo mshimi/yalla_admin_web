@@ -1,0 +1,39 @@
+.modal-slide-up {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  border-radius: 10px 10px 0 0; /* Rounded corners for top edges */
+  transform: translateY(100%);
+  animation: slide-up 0.3s ease-out forwards;
+}
+
+.modal-slide-down {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  border-radius: 10px 10px 0 0; /* Rounded corners for top edges */
+  transform: translateY(0);
+  animation: slide-down 0.3s ease-out forwards;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

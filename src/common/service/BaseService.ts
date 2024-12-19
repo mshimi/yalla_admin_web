@@ -13,7 +13,7 @@ export abstract class BaseService<T, ID> {
     /**
      * Save a new entity
      */
-    async save(entity: T): Promise<T> {
+    async save(entity: Partial<T>): Promise<T> {
       
      return    (await api.post(`${this.baseUrl}`, entity)).data;
        
