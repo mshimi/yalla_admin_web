@@ -1,5 +1,15 @@
 import { BiSolidTimer } from "react-icons/bi";
-import {  BsAirplane, BsBuildings, BsBusFront, BsCurrencyDollar, BsGeoAlt, BsGlobe, BsHouse, BsHouseDoor } from "react-icons/bs";
+import {
+    BsAirplane,
+    BsBackpack,
+    BsBuildings,
+    BsBusFront,
+    BsCurrencyDollar,
+    BsGeoAlt,
+    BsGlobe,
+    BsHouse,
+    BsHouseDoor
+} from "react-icons/bs"
 
 const SidebarItems:SidebarItem[] = [
     {
@@ -72,6 +82,11 @@ export const Items : SidebarHeaderInterface[] = [
                 label: "Vehicles",
                 path:"transfer/vehicles",
     },
+            {
+                icon: <BsBackpack />,
+                label: "Extras",
+                path:"transfer/extras",
+            },
     {
         icon: <BiSolidTimer />,
         label: "Release",

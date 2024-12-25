@@ -6,7 +6,7 @@ class AreaQueries extends QueryGenerator<Area, number> {
     private static instance: AreaQueries;
   
     private constructor() {
-      super(new AreaService(), "countries");
+      super(new AreaService(), "areas");
     }
   
     static getInstance(): AreaQueries {

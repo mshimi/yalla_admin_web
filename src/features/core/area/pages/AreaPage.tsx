@@ -9,6 +9,7 @@ import areaSlice from "../states/areaSlice"
 import CreateAreaForm from "../component/CreateAreaForm"
 import EditModal from "../../../../common/modals/EditModal"
 import EditAreaModal from "../component/EditAreaModal"
+import { ClockLoader, PuffLoader } from "react-spinners"
 
 const AreaPage: React.FC = () => {
   const { selectCurrentPage, selectAddAreaModalVisible } = areaSlice.selectors
@@ -88,7 +89,7 @@ const AreaPage: React.FC = () => {
       <div className="d-flex flex-column flex-grow-1 overflow-hidden">
         {isLoading && (
           <div className="d-flex justify-content-center align-items-center flex-grow-1">
-            <Spinner animation="border" />
+            <PuffLoader color={"#007bff"} loading={isLoading} size={70} />
           </div>
         )}
         {isError && (

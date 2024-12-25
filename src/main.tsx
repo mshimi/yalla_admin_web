@@ -9,6 +9,7 @@ import { AxiosError } from "axios"
 import ErrorNotifier from "./common/error_handlers/Notifier"
 import "react-toastify/dist/ReactToastify.css";
 import Notifier from "./common/error_handlers/Notifier"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 
 
@@ -40,10 +41,12 @@ if (container) {
 
   root.render(
     <React.StrictMode>
+
       <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <App />
         <Notifier />
+        <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Provider>
     </React.StrictMode>,

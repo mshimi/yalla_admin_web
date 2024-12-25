@@ -1,7 +1,7 @@
 interface TransferRelease {
     id:number;
-    startDate:Date|null;
-    endDate:Date|null;
+    startDate:string;
+    endDate:string;
     releaseDays:number;
     isGeneral:boolean;
 }

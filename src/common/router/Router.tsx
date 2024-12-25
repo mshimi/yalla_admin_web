@@ -12,6 +12,7 @@ import VehiclePage from "../../features/transfer/vehicle/pages/VehiclePage";
 import TransferReleasePage from "../../features/transfer/transfer_realease/pages/TransferReleasePage";
 import TransferRatePage from "../../features/transfer/transfer_rate/pages/TransferRatePage";
 import ExcurstionRatePage from "../../features/excursion/rates/pages/ExcursionRatePage";
+import TransferExtraPage from "../../features/transfer/transfer_extra/pages/TransferExtraPage"
 
 const router = createBrowserRouter(
  
@@ -52,6 +53,7 @@ const router = createBrowserRouter(
           children: [
             {  index:true, element: <Navigate to="vehicles" replace /> },
             {  path: "vehicles", element: <VehiclePage/>  },
+            {  path: "extras", element: <TransferExtraPage/>  },
             {  path: "release", element: <TransferReleasePage/>  },
             {  path: "rates", element: <TransferRatePage/>  },
           ]
