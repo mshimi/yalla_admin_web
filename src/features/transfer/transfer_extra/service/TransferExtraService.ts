@@ -74,7 +74,7 @@ class TransferExtraService {
    * Add a new translation to a TransferExtra.
    */
   async addTranslation(id: number, lang: Language, name: string): Promise<void> {
-    await apiClient.post(`${this.baseUrl}/${id}/translation`, null, {
+    await apiClient.patch(`${this.baseUrl}/${id}/translation`, null, {
       params: { lang, name },
     });
   }

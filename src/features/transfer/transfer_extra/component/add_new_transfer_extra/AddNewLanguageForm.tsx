@@ -44,7 +44,7 @@ const AddNewLanguageForm:React.FC<{onSubmit:({lang,name}:{lang:Language, name: s
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
-        <Col xs={12} md={4}>
+        <Col xs={9} md={4}>
           <Form.Group>
             <Form.Label>Language</Form.Label>
             <Form.Select
@@ -57,8 +57,8 @@ const AddNewLanguageForm:React.FC<{onSubmit:({lang,name}:{lang:Language, name: s
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col xs={12} md={2} className="d-flex align-items-end">
-          <Button variant="primary" onClick={onAddTranslation}>
+        <Col xs={3} md={2} className="d-flex align-items-end ">
+          <Button className="ms-auto" variant="primary" onClick={onAddTranslation}>
             <BiPlus />
           </Button>
         </Col>

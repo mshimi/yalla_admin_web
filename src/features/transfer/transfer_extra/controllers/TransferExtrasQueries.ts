@@ -78,17 +78,17 @@ class TransferExtrasQueries {
     useMutation({
       mutationFn: async ({ id, lang, name }: { id: number; lang: Language; name: string }) =>
         this.service.addTranslation(id, lang, name),
-      onSuccess: (_, variables) =>
-        queryClient.invalidateQueries({ queryKey: ["transferExtras"] }),
+      onSuccess: (_ , variables) =>
+        queryClient.invalidateQueries({ queryKey: ["transferExtrasTranslations", variables.id] }),
     });
 
   /**
    * Mutation to delete a translation for a TransferExtra.
    */
-  useDeleteTranslation = (): UseMutationResult<void, unknown, number> =>
+  useDeleteTranslation = (extraId:number): UseMutationResult<void, unknown, number> =>
     useMutation({
       mutationFn: async (translationId: number) => this.service.deleteTranslation(translationId),
-      onSuccess: () => queryClient.invalidateQueries({ queryKey: ["transferExtras"] }),
+      onSuccess: () => queryClient.invalidateQueries({ queryKey: ["transferExtrasTranslations", extraId] }),
     });
 
   /**

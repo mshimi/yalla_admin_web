@@ -3,26 +3,55 @@ import TransferExtrasQueries from "../controllers/TransferExtrasQueries"
 import { useState } from "react"
 import { TransferExtraTranslation } from "../types/TransferExtra "
 import { getLanguageFromString, Language } from "../../../../common/enums/Language"
+import AddNewLanguageForm from "./add_new_transfer_extra/AddNewLanguageForm"
+import LanguagesTable from "./add_new_transfer_extra/LanguagesTable"
 
 const ManageTranslationsModal: React.FC<{
   show: boolean
   onHide: () => void
   extraId: number
 }> = ({ show, onHide, extraId }) => {
-  const [newTranslation, setNewTranslation] = useState<
-    { lang: Language; name: string}
-  >({ lang: Language.EN, name: "" })
 
-  const { data: translations } =
+
+ const [itemDeleteProcessing, setItemDeleteProcessing] = useState<number|undefined>();
+
+
+
+  const { data: translations, isLoading:loading } =
     TransferExtrasQueries.useFindTranslationsByTransferExtraId(extraId)
-  const { mutate: addTranslation } =
+  const { mutateAsync: addTranslation } =
     TransferExtrasQueries.useAddOrUpdateTranslation()
-  const { mutate: deleteTranslation } =
-    TransferExtrasQueries.useDeleteTranslation()
+  const { mutateAsync: deleteTranslation } =
+    TransferExtrasQueries.useDeleteTranslation(extraId);
 
-  const handleAddTranslation = () => {
-    addTranslation({ id: extraId, lang: newTranslation.lang, name: newTranslation.name })
-    setNewTranslation({ lang: Language.EN, name: "" })
+  const handleAddTranslation = async ({lang,name}:{lang:Language,name:string}) => {
+
+    await addTranslation({name:name,lang:lang, id:extraId},{
+      onSuccess: () => {
+
+      },
+      onError: (error) => {
+        console.log(error)
+      }
+    });
+
+  }
+
+  const handleDeleteTranslation = async (trans:TransferExtraTranslation) => {
+    setItemDeleteProcessing(trans.id!);
+  await  deleteTranslation(trans.id!,{
+
+    onSettled:()=> {
+      setItemDeleteProcessing(undefined);
+    },
+      onSuccess: () => {
+
+      },
+      onError: (error) => {
+        console.log(error)
+      },
+
+    })
   }
 
   return (
@@ -31,60 +60,21 @@ const ManageTranslationsModal: React.FC<{
         <Modal.Title>Manage Translations</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ListGroup className="mb-3">
-          {translations?.map(t => (
-            <ListGroup.Item key={t.id}>
-              {t.lang}: {t.name}
-              <Button
-                variant="danger"
-                size="sm"
-                className="float-end"
-                onClick={() => deleteTranslation(t.id)}
-              >
-                Delete
-              </Button>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-        <Form>
-          <Form.Group className="mb-3">
-            <Form.Label>Translation Name</Form.Label>
-            <Form.Control
-              type="text"
-              value={newTranslation.name}
-              onChange={e =>
-                setNewTranslation({ ...newTranslation, name: e.target.value })
-              }
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Language</Form.Label>
-            <Form.Select
-              value={newTranslation.lang}
-              onChange={e =>
-                {
-                  console.log(e.target.value)
-                  setNewTranslation(prevState => ({
-                    ...prevState,
-                    lang: e.target.value as Language,
-                  }))
-                }
-              }
-            >
-              <option value={Language.EN}>English</option>
-              <option value={Language.DE}>German</option>
-              <option value={Language.FR}>French</option>
-            </Form.Select>
-          </Form.Group>
-        </Form>
+        <div>
+          <h5> add new Language </h5>
+          <AddNewLanguageForm onSubmit={handleAddTranslation} />
+        </div>
+        <hr />
+        <LanguagesTable<TransferExtraTranslation> deleteProcessing={itemDeleteProcessing} translations={translations ? translations : []} onDelete={(item)=> {
+          handleDeleteTranslation(item);
+        }}/>
+
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleAddTranslation}>
-          Add Translation
-        </Button>
+
       </Modal.Footer>
     </Modal>
   )

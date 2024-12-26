@@ -9,7 +9,7 @@ export interface TransferExtra {
 }
 
 export interface TransferExtraTranslation {
-  id: number;
+  id: number|null;
   lang: Language;
   name: string;
 }

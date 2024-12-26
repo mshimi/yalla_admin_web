@@ -1,49 +1,60 @@
-import { Button, Table } from "react-bootstrap"
+import { Button, Spinner, Table } from "react-bootstrap"
 import React from "react"
 import { Language } from "../../../../../common/enums/Language"
 import { BiTrash } from "react-icons/bi"
-import { TransferExtraTranslation } from "../../types/TransferExtra "
 
- interface LanguageTableProps  {
-  translations: Partial<TransferExtraTranslation>[],
-   onDelete: ({lang, name} : Partial<TransferExtraTranslation>) => void,
- }
+interface LanguageTableProps<T> {
+  translations: T[]
+  onDelete: (item: T) => void
+  deleteProcessing?: number
+}
 
-
-
-const LanguagesTable:React.FC<LanguageTableProps> = ({translations, onDelete}) => {
+const LanguagesTable = <T extends { id:number|null;  lang: Language; name: string }>({
+  translations,
+  onDelete,
+  deleteProcessing,
+}: LanguageTableProps<T>) => {
   return (
     <Table striped bordered hover responsive>
       <thead>
-      <tr>
-        <th>Language</th>
-        <th>Name</th>
-        <th>Action</th>
-      </tr>
+        <tr>
+          <th>Language</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody>
-      {translations.length === 0 && (
-        <tr>
-          <td className="text-center" colSpan={3}>
-            Please add Translations
-          </td>
-        </tr>
-      )}
+        {translations.length === 0 && (
+          <tr>
+            <td className="text-center" colSpan={3}>
+              Please add Translations
+            </td>
+          </tr>
+        )}
 
-      {translations.map(t => (
-        <tr key={t.lang}>
-          <td>{t.lang}</td>
-          <td>{t.name}</td>
-          <td>
-            <Button variant="danger" size="sm" onClick={() => onDelete(t)}>
-              <BiTrash/>
-            </Button>
-          </td>
-        </tr>
-      ))}
+        {translations.map((t, index) => (
+          <tr key={index}>
+            <td>{t.lang}</td>
+            <td>{t.name}</td>
+            <td>
+              <Button
+                active={t.id !== null && deleteProcessing === t.id}
+                variant="danger"
+                size="sm"
+                onClick={() => onDelete(t)}
+              >
+
+                {
+                  deleteProcessing === t.id ? <Spinner animation="border" size="sm" role="status" /> :<BiTrash />
+                }
+
+
+              </Button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   )
 }
-
 export default LanguagesTable

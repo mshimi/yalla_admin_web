@@ -17,7 +17,7 @@ const AddTransferExtraModal: React.FC<AddTransferExtraModalProps> = ({ show, onH
   const [paxValue, setPaxValue] = useState(1)
 
   const [translations, setTranslations] = useState<
-    Partial<TransferExtraTranslation>[]
+    TransferExtraTranslation[]
   >([])
 
 
@@ -66,28 +66,28 @@ const AddTransferExtraModal: React.FC<AddTransferExtraModalProps> = ({ show, onH
             />
           </Form.Group>
           <AddNewLanguageForm
-            onSubmit={({ lang, name }) =>
-             {
-               setTranslations((prevTranslations) => {
-                 // Find if a translation already exists with the given lang
-                 const existingTranslation = prevTranslations.find((t) => t.lang === lang);
+            onSubmit={({ lang, name }) => {
+              setTranslations((prevTranslations) => {
+                const existingTranslation = prevTranslations.find((t) => t.lang === lang);
 
-                 if (existingTranslation) {
-                   // If exists, update the name of this element
-                   return prevTranslations.map((t) =>
-                     t.lang === lang ? { ...t, name } : t
-                   );
-                 }
+                if (existingTranslation) {
+                  // Update the existing translation's name
+                  return prevTranslations.map((t) =>
+                    t.lang === lang ? { ...t, name } : t
+                  );
+                }
 
-                 // If not, add a new translation
-                 return [...prevTranslations, { lang, name }];
-               });
-             }
-            }
+                // Add a new translation with default properties
+                return [
+                  ...prevTranslations,
+                  { lang, name, id: prevTranslations.length + 1 }, // Ensure id is added if required
+                ];
+              });
+            }}
           />
         </Form>
 
-    <LanguagesTable translations={translations} onDelete={(trans: Partial<TransferExtraTranslation>)=> {
+    <LanguagesTable<{lang:Language; name:string}>    translations={translations} onDelete={(trans: Partial<TransferExtraTranslation>)=> {
       setTranslations(prevTranslations =>{
         return prevTranslations.filter(t => t.lang !== trans.lang)
       })
