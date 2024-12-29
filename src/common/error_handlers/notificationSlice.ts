@@ -5,6 +5,7 @@ export interface Notification {
   id: string; // Unique ID for tracking
   message: string;
   type: NotificationType;
+  details?:string[];
 }
 
 interface NotificationState {

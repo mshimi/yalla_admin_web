@@ -2,6 +2,7 @@ import { Button, Col, Form, Row } from "react-bootstrap"
 import { Language } from "../../../../../common/enums/Language"
 import { BiPlus } from "react-icons/bi"
 import { useState } from "react"
+import LanguageDropdown from "../../../../../common/components/dropdowns/LanguageDropdown"
 
 const AddNewLanguageForm:React.FC<{onSubmit:({lang,name}:{lang:Language, name: string})=>void}> = ({onSubmit})=>{
 
@@ -45,17 +46,10 @@ const AddNewLanguageForm:React.FC<{onSubmit:({lang,name}:{lang:Language, name: s
           </Form.Group>
         </Col>
         <Col xs={9} md={4}>
-          <Form.Group>
-            <Form.Label>Language</Form.Label>
-            <Form.Select
-              value={lang}
-              onChange={e => onLangChange(e.target.value as Language)}
-            >
-              <option value={Language.EN}>English</option>
-              <option value={Language.DE}>German</option>
-              <option value={Language.FR}>French</option>
-            </Form.Select>
-          </Form.Group>
+         <LanguageDropdown selected={lang} onChange={(lang)=> {
+           setLang(lang);
+         }}/>
+
         </Col>
         <Col xs={3} md={2} className="d-flex align-items-end ">
           <Button className="ms-auto" variant="primary" onClick={onAddTranslation}>

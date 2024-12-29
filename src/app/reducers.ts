@@ -10,6 +10,7 @@ import areaSlice from "../features/core/area/states/areaSlice"
 import hotelSlice from "../features/core/hotel/states/hotelSlice"
 import airportSlice from "../features/core/airport/states/airportSlice"
 import vehicleSlice from "../features/transfer/vehicle/states/vehicleSlice"
+import transferRateSlice from "../features/transfer/transfer_rate/states/transferRateSlice"
 
 const rootReducer = combineSlices(
   counterSlice,
@@ -22,6 +23,7 @@ const rootReducer = combineSlices(
   hotelSlice,
   airportSlice,
   vehicleSlice,
+  transferRateSlice,
 )
 
 export default rootReducer

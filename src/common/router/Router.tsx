@@ -13,6 +13,8 @@ import TransferReleasePage from "../../features/transfer/transfer_realease/pages
 import TransferRatePage from "../../features/transfer/transfer_rate/pages/TransferRatePage";
 import ExcurstionRatePage from "../../features/excursion/rates/pages/ExcursionRatePage";
 import TransferExtraPage from "../../features/transfer/transfer_extra/pages/TransferExtraPage"
+import ManageChildrenPoliciesPage
+  from "../../features/transfer/transfer_childrenpolicy/pages/ManageChildrenPoliciesPage"
 
 const router = createBrowserRouter(
  
@@ -55,6 +57,7 @@ const router = createBrowserRouter(
             {  path: "vehicles", element: <VehiclePage/>  },
             {  path: "extras", element: <TransferExtraPage/>  },
             {  path: "release", element: <TransferReleasePage/>  },
+            {  path: "childpolicy", element: <ManageChildrenPoliciesPage/>  },
             {  path: "rates", element: <TransferRatePage/>  },
           ]
         },

@@ -59,7 +59,7 @@ class TransferExtraService {
    */
   async updateTranslation(id: number, lang: Language, name: string): Promise<void> {
     await apiClient.patch(`${this.baseUrl}/${id}/translation`, null, {
-      params: { lang, name },
+      params: { lang , name },
     });
   }
 

@@ -17,7 +17,7 @@ const SideBarElements: React.FC = () => {
           Items.map((item) => (
             
 
-           <SidebarGroup key={item.label} item={item} collapsed={false} /> 
+           <SidebarGroup key={item.label} item={item}  />
           
             
           ))

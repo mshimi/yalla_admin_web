@@ -32,9 +32,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item  }) => {
           data-bs-placement="right"
           title={ item.label }
         >
-          <Col xs= {4}>
+          <Col xs= {3}>
           <span
-            className={`me-2 ${isActive ? "text-primary" : ""}`}
+            className={`me-1 ${isActive ? "text-primary" : ""}`}
             style={{
               fontSize: isActive ? "1rem" : "1rem",
             }}
@@ -42,8 +42,15 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item  }) => {
             {item.icon}
           </span>
           </Col>
-          <Col xs= {8}>
-          <span>{item.label}</span>
+          <Col xs= {9}>
+          <span
+            style={{
+              whiteSpace: "nowrap", // Prevent wrapping
+              overflow: "hidden", // Hide overflowed text
+              textOverflow: "ellipsis", // Add ellipsis if text overflows
+            }}
+
+          >{item.label}</span>
           </Col>
           
         </Row>

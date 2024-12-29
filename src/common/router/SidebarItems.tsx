@@ -92,6 +92,11 @@ export const Items : SidebarHeaderInterface[] = [
         label: "Release",
         path:"transfer/release",
 },
+            {
+                icon: <BiSolidTimer />,
+                label: "Child Policies",
+                path:"transfer/childpolicy",
+            },
 {
     icon: <BsCurrencyDollar />,
     label: "Rates",

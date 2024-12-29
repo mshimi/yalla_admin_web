@@ -43,7 +43,7 @@ const Notifier: React.FC = () => {
             break;
           case "error":
           default:
-            toast.error(notification.message, {
+            toast.error(toastBody({ message: notification.message, details: notification.details }), {
               position: "bottom-left",
               autoClose: 5000,
               hideProgressBar: false,
@@ -59,5 +59,22 @@ const Notifier: React.FC = () => {
 
   return <ToastContainer />;
 };
+
+
+const toastBody = ({message,details}:{message:string,details?:string[]})=> {
+  return (
+    <div>
+      <strong>{message}</strong>
+      {details && (
+        <ul>
+          {details.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 
 export default Notifier;

@@ -45,9 +45,10 @@ apiClient.interceptors.response.use(
     if (error.response) {
       // Extract the error message from the API response
       const errorMessage = (error.response.data as { message?: string })?.message || "An unknown error occurred.";
+      const details = (error.response.data as {details?: string[]})?.details ;
 
       // Use the store's dispatch method to dispatch the error
-      store.dispatch(addNotification({ message: errorMessage, type: "error" }));
+      store.dispatch(addNotification({ message: errorMessage, type: "error" , details: details }));
     }
 
     // Reject the error so it can be handled further downstream if needed

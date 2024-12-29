@@ -15,10 +15,10 @@ const AppNavbar: React.FC = () => {
   const handleShowOffcanvas = () => setShowOffcanvas(true);
 
   return (
-    <Navbar bg="light" variant="light" fixed="top" className="border-bottom shadow-sm">
+    <Navbar bg="light" variant="light" fixed="top" className="border-bottom shadow">
       <Container fluid>
 
-      <Button className="d-sm-none" variant="outline-primary" onClick={handleShowOffcanvas}>
+      <Button className="d-none" variant="outline-primary" onClick={handleShowOffcanvas}>
           Menu
         </Button>
 
