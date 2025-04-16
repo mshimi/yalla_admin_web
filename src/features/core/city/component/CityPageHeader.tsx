@@ -1,15 +1,15 @@
-import { Button, Stack } from "react-bootstrap";
+import  { Button, Stack } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import citySlice from "../states/CitySlice";
 
 const CityPageHeader : React.FC =()=> {
 
-    const {selectCurrentPage, selectSelectedCity} = citySlice.selectors;
+    const {selectCurrentPage, selectAddCityModalVisible} = citySlice.selectors;
 
 
     const dispatch = useAppDispatch();
     const pageNumber = useAppSelector(selectCurrentPage);
-    const selectedCity = useAppSelector(selectSelectedCity);
+    const selectedCity = useAppSelector(selectAddCityModalVisible);
 
 
 return (

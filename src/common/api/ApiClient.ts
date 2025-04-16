@@ -33,6 +33,7 @@ apiClient.interceptors.request.use(
           }
 
 
+    console.log(config)
       return config;
   },
   (error) => Promise.reject(error)

@@ -2,9 +2,9 @@ import { Table } from "react-bootstrap"
 import TransferRateTableHeader from "./TransferRateTableHeader"
 import TransferRateTableBody from "./TransferRateTableBody"
 import React from "react"
-import { useAppSelector } from "../../../../app/hooks"
-import { selectCurrentPage, selectFilters } from "../states/transferRateSlice"
-import TransferRateQueries from "../controllers/TransferRateQueries"
+import { useAppSelector } from "../../../../../app/hooks"
+import { selectCurrentPage, selectFilters } from "../../states/transferRateSlice"
+import TransferRateQueries from "../../controllers/TransferRateQueries"
 
 const TransferRateTable:React.FC = () => {
 

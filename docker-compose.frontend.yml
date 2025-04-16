@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  frontend-app:
+    image: yalla-admin:latest
+    container_name: yalla-admin-container
+    ports:
+      - "3008:80"
+    environment:
+      VITE_REACT_APP_API_URL: http://yalla-api-container:8081/api/v1
+    networks:
+      - app-network
+networks:
+  app-network:
+    external: true

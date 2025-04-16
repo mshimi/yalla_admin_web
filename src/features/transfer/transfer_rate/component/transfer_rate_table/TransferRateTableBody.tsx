@@ -1,10 +1,11 @@
-import TransferRate from "../types/TransferRate"
-import ActiveStatusCheckbox from "./ActiveStatusCheckbox"
+import TransferRate from "../../types/TransferRate"
+import ActiveStatusCheckbox from "../ActiveStatusCheckbox"
 import { useState } from "react"
-import ConfirmationModal from "./ConfirmationModal"
-import TransferRateQueries from "../controllers/TransferRateQueries"
-import { useAppDispatch } from "../../../../app/hooks"
-import { addNotification } from "../../../../common/error_handlers/notificationSlice"
+import ConfirmationModal from "../ConfirmationModal"
+import TransferRateQueries from "../../controllers/TransferRateQueries"
+import { useAppDispatch } from "../../../../../app/hooks"
+import { addNotification } from "../../../../../common/error_handlers/notificationSlice"
+import TransferRateRow from "./TransferRateRow"
 
 interface TransferRateTableBodyProps {
   transferRates: TransferRate[];
@@ -73,47 +74,33 @@ const TransferRateTableBody: React.FC<TransferRateTableBodyProps> = ({ transferR
   const handleCloseModal = () => setShowConfirmationModal(null);
 
   return (
-<>
-      <tbody  >
-      {
-        transferRates.length === 0 ? (<tr>
+    <>
+      <tbody>
+        {transferRates.length === 0 ? (
+          <tr>
             <td colSpan={6}>No Transfer Rates</td>
-          </tr>) :
-
+          </tr>
+        ) : (
           transferRates.map((rate, index) => (
-            <tr key={rate.id}>
-              <td>{rate.id}</td>
-              <td>{rate.sourceArea.areaName}</td>
-              <td>{rate.destinationArea.areaName}</td>
-              <td>{rate.ratePerPerson.toFixed(2)}</td>
-              <td>{new Date(rate.createdAt).toLocaleDateString()}</td>
-              <td>
+            <TransferRateRow key={index} rate={rate} onStatusChange={handleOnStatusChange} />
 
-                <ActiveStatusCheckbox isActive={rate.isActive} onStatusChange={() => {
-                  handleOnStatusChange(rate.id, !rate.isActive);
-                }} />
-
-              </td>
-            </tr>
-          ))}
-
+          ))
+        )}
       </tbody>
 
-
-  {/* Confirmation Modal */}
-  {showConfirmationModal && (
-    <ConfirmationModal
-      isLoading={isLoading}
-      show={!!showConfirmationModal}
-      onHide={handleCloseModal}
-      onConfirm={handleConfirm}
-      status={showConfirmationModal.status}
-      transferRateId={showConfirmationModal.id}
-    />
-  )}
-
-</>
-      );
+      {/* Confirmation Modal */}
+      {showConfirmationModal && (
+        <ConfirmationModal
+          isLoading={isLoading}
+          show={!!showConfirmationModal}
+          onHide={handleCloseModal}
+          onConfirm={handleConfirm}
+          status={showConfirmationModal.status}
+          transferRateId={showConfirmationModal.id}
+        />
+      )}
+    </>
+  )
       };
 
       export default TransferRateTableBody;

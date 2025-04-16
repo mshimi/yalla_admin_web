@@ -5,9 +5,10 @@ import Area from "../types/Area";
 interface AreaDropdownInputProps {
     value: Area | null;
     onChange: (value: Area | null) => void;
+    required?: boolean;
   }
   
-  const AreaDropdownInput: React.FC<AreaDropdownInputProps> = ({ value, onChange }) => {
+  const AreaDropdownInput: React.FC<AreaDropdownInputProps> = ({ value, onChange, required }) => {
     const areaQueries = new AreaService();
   
     // Function to load options dynamically
@@ -36,6 +37,7 @@ interface AreaDropdownInputProps {
   
     return (
       <AsyncSelect
+        required={required}
         cacheOptions
         defaultOptions
         loadOptions={loadOptions}

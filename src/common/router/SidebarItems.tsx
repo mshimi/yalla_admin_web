@@ -1,4 +1,4 @@
-import { BiSolidTimer } from "react-icons/bi";
+import { BiChild, BiSolidTimer } from "react-icons/bi"
 import {
     BsAirplane,
     BsBackpack,
@@ -10,6 +10,8 @@ import {
     BsHouse,
     BsHouseDoor
 } from "react-icons/bs"
+import { FaBookOpen } from "react-icons/fa"
+import { AiOutlineExperiment } from "react-icons/ai"
 
 const SidebarItems:SidebarItem[] = [
     {
@@ -93,7 +95,7 @@ export const Items : SidebarHeaderInterface[] = [
         path:"transfer/release",
 },
             {
-                icon: <BiSolidTimer />,
+                icon: <BiChild />,
                 label: "Child Policies",
                 path:"transfer/childpolicy",
             },
@@ -102,6 +104,11 @@ export const Items : SidebarHeaderInterface[] = [
     label: "Rates",
     path:"transfer/rates",
 },
+            {
+                icon: <AiOutlineExperiment  />,
+                label: "Test Booking",
+                path:"transfer/testbooking",
+            },
 ],},
 ];
 

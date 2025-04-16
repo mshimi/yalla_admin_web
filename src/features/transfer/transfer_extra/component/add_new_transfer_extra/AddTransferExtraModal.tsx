@@ -87,7 +87,7 @@ const AddTransferExtraModal: React.FC<AddTransferExtraModalProps> = ({ show, onH
           />
         </Form>
 
-    <LanguagesTable<{lang:Language; name:string}>    translations={translations} onDelete={(trans: Partial<TransferExtraTranslation>)=> {
+    <LanguagesTable<{id:number | null,lang:Language; name:string}>    translations={translations} onDelete={(trans: Partial<TransferExtraTranslation>)=> {
       setTranslations(prevTranslations =>{
         return prevTranslations.filter(t => t.lang !== trans.lang)
       })

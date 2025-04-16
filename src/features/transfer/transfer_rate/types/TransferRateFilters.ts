@@ -5,6 +5,7 @@
   ratePerPerson: string | null;
   createdAt: string | null;
   isActive: string | null;
+  release: string | null;
 }
 
 

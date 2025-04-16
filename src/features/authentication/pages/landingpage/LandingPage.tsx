@@ -1,7 +1,7 @@
 import type React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import logo2 from "../../../../assets/logo2.png";
-import "./LandingPage.css";
+import "./landingPage.css";
 import { useEffect, useState } from "react";
 
 const LandingPage: React.FC = () => {

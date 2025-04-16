@@ -18,6 +18,7 @@ const initialFilters:TransferRateFilters = {
   ratePerPerson: null,
   createdAt: null,
   isActive: "true",
+  release: null,
 
 }
 
