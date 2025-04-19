@@ -1,129 +1,140 @@
 import { BiChild, BiSolidTimer } from "react-icons/bi"
 import {
-    BsAirplane,
-    BsBackpack,
-    BsBuildings,
-    BsBusFront,
-    BsCurrencyDollar,
-    BsGeoAlt,
-    BsGlobe,
-    BsHouse,
-    BsHouseDoor
+  BsAirplane,
+  BsBackpack,
+  BsBuildings,
+  BsBusFront,
+  BsCurrencyDollar,
+  BsGeoAlt,
+  BsGlobe,
+  BsHouse,
+  BsHouseDoor,
 } from "react-icons/bs"
 import { FaBookOpen } from "react-icons/fa"
 import { AiOutlineExperiment } from "react-icons/ai"
 
-const SidebarItems:SidebarItem[] = [
-    {
+const SidebarItems: SidebarItem[] = [
+  {
+    icon: <BsHouse />,
+    label: "Dashboard",
+    path: "/",
+  },
+]
+
+export const Items: SidebarHeaderInterface[] = [
+  {
+    label: "Main",
+    children: [
+      {
         icon: <BsHouse />,
         label: "Dashboard",
         path: "/",
-    },
-   
-];
+      },
+    ],
+  },
+  {
+    label: "Configuration",
+    children: [],
+  },
 
-
-export const Items : SidebarHeaderInterface[] = [
-    {
-        label: "Main",
-        children: [
-            {
-                icon: <BsHouse />,
-                label: "Dashboard",
-                path: "/",
-            },
-        ]
-    },
-    {
-        label:"Configuration",
-        children:[
-            
-],
-},
-    
-    {
-        children: [
-            {
-                icon: <BsGlobe />,
-                label: "Countries",
-                path: "core/countries",
-                
-            },
-            {
-                icon: <BsBuildings />,
-                label: "Cities",
-                path: "core/cities",
-                
-            },
-            {
-                icon: <BsGeoAlt />,
-                label: "Areas",
-                path: "core/areas",
-                
-            },
-            {
-                icon: <BsHouseDoor />,
-                label: "Hotels",
-                path: "core/hotels",
-                
-            },
-            {
-                icon: <BsAirplane />,
-                label: "Airports",
-                path: "core/airports",
-                
-            },
-           ],
-        label: "Core",
-    },
-    {
-        label:"Transfer",
-        children:[
-            {
-                icon: <BsBusFront />,
-                label: "Vehicles",
-                path:"transfer/vehicles",
-    },
-            {
-                icon: <BsBackpack />,
-                label: "Extras",
-                path:"transfer/extras",
-            },
-    {
+  {
+    children: [
+      {
+        icon: <BsGlobe />,
+        label: "Countries",
+        path: "core/countries",
+      },
+      {
+        icon: <BsBuildings />,
+        label: "Cities",
+        path: "core/cities",
+      },
+      {
+        icon: <BsGeoAlt />,
+        label: "Areas",
+        path: "core/areas",
+      },
+      {
+        icon: <BsHouseDoor />,
+        label: "Hotels",
+        path: "core/hotels",
+      },
+      {
+        icon: <BsAirplane />,
+        label: "Airports",
+        path: "core/airports",
+      },
+    ],
+    label: "Core",
+  },
+  {
+    label: "Transfer",
+    children: [
+      {
+        icon: <BsBusFront />,
+        label: "Vehicles",
+        path: "transfer/vehicles",
+      },
+      {
+        icon: <BsBackpack />,
+        label: "Extras",
+        path: "transfer/extras",
+      },
+      {
         icon: <BiSolidTimer />,
         label: "Release",
-        path:"transfer/release",
-},
-            {
-                icon: <BiChild />,
-                label: "Child Policies",
-                path:"transfer/childpolicy",
-            },
-{
-    icon: <BsCurrencyDollar />,
-    label: "Rates",
-    path:"transfer/rates",
-},
-            {
-                icon: <AiOutlineExperiment  />,
-                label: "Test Booking",
-                path:"transfer/testbooking",
-            },
-],},
-];
-
+        path: "transfer/release",
+      },
+      {
+        icon: <BiChild />,
+        label: "Child Policies",
+        path: "transfer/childpolicy",
+      },
+      {
+        icon: <BsCurrencyDollar />,
+        label: "Rates",
+        path: "transfer/rates",
+      },
+      {
+        icon: <AiOutlineExperiment />,
+        label: "Test Booking",
+        path: "transfer/testbooking",
+      },
+    ],
+  },
+  {
+    label:"Excursion",
+    children: [
+      {
+        icon: <BsBusFront />,
+        label: "Excursions",
+        path: "excursion/excursions",
+      },
+      {
+        icon: <BsBusFront />,
+        label: "Categories",
+        path: "excursion/categories",
+      },
+      {
+        icon: <BsBusFront />,
+        label: "Excursion Items",
+        path: "excursion/items",
+      },
+    ]
+  }
+]
 
 export interface SidebarHeaderInterface {
-    children: SidebarItem[];
-    label: string;
-    onlyAdmin?: boolean ;
+  children: SidebarItem[]
+  label: string
+  onlyAdmin?: boolean
 }
 
 export interface SidebarItem {
-    icon: React.ReactNode;
-    label: string;
-    path: string;
-    onlyAdmin?: boolean ;
+  icon: React.ReactNode
+  label: string
+  path: string
+  onlyAdmin?: boolean
 }
 
-export default SidebarItems;
+export default SidebarItems

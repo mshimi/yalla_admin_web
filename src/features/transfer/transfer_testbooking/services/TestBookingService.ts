@@ -3,7 +3,7 @@ import { TestBookingResponseDTO } from "../types/TestBookingResponseDTO";
 import { TestBookingRequestDTO } from "../types/TestBookingRequest"
 import apiClient from "../../../../common/api/ApiClient"
 
-const API_BASE = "/admin/transfer/testbooking";
+const API_BASE = "/transfer/testbooking";
 
 class TestBookingService {
   async testBooking(dto: TestBookingRequestDTO): Promise<TestBookingResponseDTO> {

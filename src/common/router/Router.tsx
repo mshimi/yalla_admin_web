@@ -11,10 +11,12 @@ import AirportPage from "../../features/core/airport/pages/AirportPage"
 import VehiclePage from "../../features/transfer/vehicle/pages/VehiclePage"
 import TransferReleasePage from "../../features/transfer/transfer_realease/pages/TransferReleasePage"
 import TransferRatePage from "../../features/transfer/transfer_rate/pages/TransferRatePage"
-import ExcurstionRatePage from "../../features/excursion/rates/pages/ExcursionRatePage"
 import TransferExtraPage from "../../features/transfer/transfer_extra/pages/TransferExtraPage"
 import ManageChildrenPoliciesPage from "../../features/transfer/transfer_childrenpolicy/pages/ManageChildrenPoliciesPage"
 import TestBookingPage from "../../features/transfer/transfer_testbooking/pages/TestBookingPage"
+import { Container } from "react-bootstrap"
+import CategoryPage from "../../features/excursion/category/pages/CategoryPage"
+import ExcursionItemPage from "../../features/excursion/excursionItem/pages/ExcursionsItem"
 
 const router = createBrowserRouter(
   [
@@ -59,6 +61,9 @@ const router = createBrowserRouter(
             { path: "childpolicy", element: <ManageChildrenPoliciesPage /> },
             { path: "rates", element: <TransferRatePage /> },
             { path: "testbooking", element: <TestBookingPage /> },
+
+
+
           ],
         },
         {
@@ -66,8 +71,13 @@ const router = createBrowserRouter(
           element: <Outlet />,
 
           children: [
-            { index: true, element: <Navigate to="excursion" replace /> },
-            { path: "excursion", element: <ExcurstionRatePage /> },
+            { index: true, element: <Navigate to="categories" replace /> },
+            { path: "excursions", element: <Container>excursion</Container> },
+            { path: "categories", element: <CategoryPage/> },
+            { path: "items", element: <ExcursionItemPage/> },
+
+
+
           ],
         },
       ],
