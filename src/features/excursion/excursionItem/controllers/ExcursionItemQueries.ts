@@ -10,6 +10,7 @@ import ExcursionItemService, { AdminItemQueryParams } from "../service/Excursion
 import { ExcursionItem } from "../types/ExcursionItem"
 import { ExcursionItemTranslation } from "../types/ExcursionItemTranslation"
 import { ExcursionItemAdmin } from "../types/ExcursionItemAdmin"
+import { PaginatedResponse } from "../../../../common/types/PaginatedResponse"
 
 type MutationActions<TData, TVariables = void> = Omit<
   MutationOptions<TData, Error, TVariables>,
@@ -51,19 +52,15 @@ class ExcursionItemQueries {
    */
   useGetItemsForAdminPaginated = (
     params: AdminItemQueryParams
-  ): UseQueryResult<{
-    content: ExcursionItemAdmin[];
-    totalPages: number;
-    totalElements: number;
-    number: number;
-  }> => {
+  ): UseQueryResult<PaginatedResponse<ExcursionItemAdmin>> => {
     return useQuery({
       queryKey: ["adminExcursionItems", params],
       queryFn: () => this.service.getItemsForAdminPaginated(params),
-      select: (data) => {
-        data.content.sort((a,b)=> a.item.id! - b.item.id!);
+      select: (data) =>{
+        data.content.sort((a, b) => a.item.id!  - b.item.id!)
         return data;
       },
+
       placeholderData: (previousData) => previousData,
     })
   }

@@ -2,6 +2,7 @@ import apiClient from "../../../../common/api/ApiClient";
 import { ExcursionItem } from "../types/ExcursionItem";
 import { ExcursionItemTranslation } from "../types/ExcursionItemTranslation";
 import { ExcursionItemAdmin } from "../types/ExcursionItemAdmin";
+import { PaginatedResponse } from "../../../../common/types/PaginatedResponse"
 
 
 export interface AdminItemQueryParams {
@@ -30,12 +31,7 @@ class ExcursionItemService {
     return response.data;
   }
 
-  async getItemsForAdminPaginated(params: AdminItemQueryParams): Promise<{
-    content: ExcursionItemAdmin[];
-    totalPages: number;
-    totalElements: number;
-    number: number;
-  }> {
+  async getItemsForAdminPaginated(params: AdminItemQueryParams): Promise<PaginatedResponse<ExcursionItemAdmin>> {
     const response = await apiClient.get(`${this._baseURL}/with-missing-languages`, {
       params,
     });

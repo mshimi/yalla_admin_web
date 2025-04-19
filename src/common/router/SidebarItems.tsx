@@ -1,4 +1,4 @@
-import { BiChild, BiSolidTimer } from "react-icons/bi"
+import { BiChild, BiListCheck, BiSolidTimer } from "react-icons/bi"
 import {
   BsAirplane,
   BsBackpack,
@@ -12,6 +12,8 @@ import {
 } from "react-icons/bs"
 import { FaBookOpen } from "react-icons/fa"
 import { AiOutlineExperiment } from "react-icons/ai"
+import { MdCategory } from "react-icons/md"
+import { GiPalmTree } from "react-icons/gi"
 
 const SidebarItems: SidebarItem[] = [
   {
@@ -106,17 +108,17 @@ export const Items: SidebarHeaderInterface[] = [
     label:"Excursion",
     children: [
       {
-        icon: <BsBusFront />,
+        icon: <GiPalmTree />,
         label: "Excursions",
         path: "excursion/excursions",
       },
       {
-        icon: <BsBusFront />,
+        icon: <MdCategory />,
         label: "Categories",
         path: "excursion/categories",
       },
       {
-        icon: <BsBusFront />,
+        icon: <BiListCheck />,
         label: "Excursion Items",
         path: "excursion/items",
       },
